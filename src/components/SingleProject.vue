@@ -2,6 +2,11 @@
   <div class="project">
     <div class="actions">
       <h3 @click="showDetails = !showDetails">{{ project.title }}</h3>
+      <div class="icons">
+        <span class="material-icons">done</span>
+        <span class="material-icons">edit</span>
+        <span @click="deleteProject" class="material-icons">delete</span>
+      </div>
     </div>
     <div v-if="showDetails" class="details">
       <p>{{ project.details }}</p>
@@ -15,7 +20,19 @@ export default {
   data() {
     return {
       showDetails: false,
+      uri: 'http://localhost:3000/projects/' + this.project.id,
     };
+  },
+  methods: {
+    deleteProject() {
+      // This line deletes the project from the data.json file
+      fetch(this.uri, { method: 'DELETE' })
+        // This emits a delete event to the single project page to delete
+        // the project from the view
+        .then(() => this.$emit('delete', this.project.id))
+        // This line catches and console logs any errors
+        .catch((err) => console.log(err.message));
+    },
   },
 };
 </script>
@@ -31,5 +48,19 @@ export default {
 }
 h3 {
   cursor: pointer;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.material-icons {
+  font-size: 24px;
+  margin-left: 10px;
+  color: #bbb;
+  cursor: pointer;
+}
+.material-icons:hover {
+  color: #777;
 }
 </style>
