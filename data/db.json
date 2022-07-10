@@ -7,15 +7,13 @@
       "complete": true
     },
     {
-      "id": 2,
       "title": "Make marketing email",
-      "details": "lorem ipsum",
-      "complete": false
+      "details": "blah blah",
+      "id": 2
     },
     {
-      "title": "Build a new website",
-      "details": "blah blach",
-      "complete": false,
+      "title": "Build a new email",
+      "details": "blah blach blah blah",
       "id": 3
     }
   ]
